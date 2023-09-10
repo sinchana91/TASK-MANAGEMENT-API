@@ -8,6 +8,10 @@ const PORT=process.env.PORT ||3000;
 dotenv.config();
 
 
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 mongoose.connect(process.env.MONGO_URL,{
     useNewUrlParser:true,
     useUnifiedTopology:true,
@@ -18,7 +22,7 @@ mongoose.connect(process.env.MONGO_URL,{
 });
 
 
-app.use("/routes/auth",authRoute);
+app.use("/auth",authRoute);
 
 app.listen(PORT,()=>{
     console.log("server is running on  backend",`localhost:${PORT}`);
