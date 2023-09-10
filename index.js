@@ -11,10 +11,14 @@ dotenv.config();
 mongoose.connect(process.env.MONGO_URL,{
     useNewUrlParser:true,
     useUnifiedTopology:true,
-}).then(console.log("connect to DB")).catch(err=>console.log(err));
+}).then(()=>{
+    console.log("connect to DB");
+}).catch(err=>{
+    console.log("Error connecting to DB",err);
+});
 
 
-app.use("./routes/auth",authRoute);
+app.use("/routes/auth",authRoute);
 
 app.listen(PORT,()=>{
     console.log("server is running on  backend",`localhost:${PORT}`);
