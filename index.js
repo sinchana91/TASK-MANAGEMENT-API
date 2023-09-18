@@ -4,6 +4,7 @@ const dotenv=require("dotenv");
 const mongoose=require("mongoose");
 const multer =require("multer");
 const authRoute=require("./routes/auth");
+const taskRoute=require("./routes/task");
 const PORT=process.env.PORT ||3000;
 dotenv.config();
 
@@ -23,6 +24,8 @@ mongoose.connect(process.env.MONGO_URL,{
 
 
 app.use("/auth",authRoute);
+app.use("/task",taskRoute);
+
 
 app.listen(PORT,()=>{
     console.log("server is running on  backend",`localhost:${PORT}`);
